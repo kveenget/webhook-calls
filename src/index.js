@@ -11,6 +11,9 @@ app.get('/', (req, res) =>{
     res.json({message: 'Retell webhook running'});
 });
 
+const callsRouter = require('./routes/calls');
+app.use('/api', callsRouter);
+
 
 
 pool.query('SELECT NOW()', (err, res) => {
