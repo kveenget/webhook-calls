@@ -5,7 +5,11 @@ const pool = require('./db');
 
 
 const app = express(); //isntancia - app es mi servidor
-app.use(express.json());
+app.use(express.json({
+  verify: (req, res, buf) => {
+    req.rawBody = buf.toString('utf8');
+  }
+}));
 
 app.get('/', (req, res) =>{
     res.json({message: 'Retell webhook running'});
